@@ -20,6 +20,7 @@
       - retdec-python
 
 - name: Fix capstone shared library
+  become: true
   file:
       path: /usr/local/lib/python3.5/dist-packages/capstone/libcapstone.so
       src: /usr/local/lib/python3.5/dist-packages/usr/lib/python3/dist-packages/capstone/libcapstone.so
