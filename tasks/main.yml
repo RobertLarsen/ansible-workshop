@@ -1,0 +1,62 @@
+---
+- name: Install pwntools
+  pip: name=pwntools
+
+- name: Install binutils and dev tools
+  become: true
+  apt: "name={{item}}"
+  with_items:
+      - binutils-mips-linux-gnu
+      - binutils-arm-linux-gnueabi
+      - libc6-dev-i386
+      - execstack
+      - nasm
+      - curl
+
+- name: See if we should install asciidoc
+  stat: path=/vagrant/build_asciidoc
+  register: build_asciidoc
+
+- name: Install asciidoc
+  when: build_asciidoc.stat.isreg is defined and build_asciidoc.stat.isreg
+  include: asciidoc.yml
+
+- name: Create flag files
+  shell: "head -c 20 /dev/urandom | md5sum | head -c 32 >{{item}}"
+  args:
+      creates: "{{item}}"
+  with_items: "{{flag_files}}"
+
+- name: Start services
+  become: true
+  docker_container:
+      name: "{{item.name}}"
+      command: "{{item.path}} --port {{item.port}}"
+      volumes:
+          - "{{item.flag}}:/flag"
+      ports:
+          - "{{item.port}}:{{item.port}}"
+      image: robertlarsen/prosaworkshop:latest
+  with_items: "{{services}}"
+
+- name: Fetch binaries
+  become: true
+  shell: "docker cp integer_conversion:/{{item.project}}/{{item.binary}} /vagrant/presentations/{{item.project}}/assignments/{{item.binary}}"
+  args:
+      creates: "/vagrant/presentations/{{item.project}}/assignments/{{item.binary}}"
+  with_items: "{{service_executables}}"
+
+- name: Set limit for core dumps
+  become: true
+  lineinfile:
+      line: "vagrant     soft      core      unlimited"
+      path: /etc/security/limits.conf
+
+- name: Bashrc
+  include: bashrc.yml
+
+- name: RunShellcode
+  include: runshellcode.yml
+
+- name: Install gdb
+  include: gdb.yml
