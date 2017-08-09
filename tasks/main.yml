@@ -23,7 +23,7 @@
   include: asciidoc.yml
 
 - name: Create flag files
-  shell: "head -c 20 /dev/urandom | md5sum | head -c 32 >{{item}}"
+  shell: "echo $(head -c 20 /dev/urandom | md5sum | head -c 32) >{{item}}"
   args:
       creates: "{{item}}"
   with_items: "{{flag_files}}"
