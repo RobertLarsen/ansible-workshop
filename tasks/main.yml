@@ -13,6 +13,7 @@
       - execstack
       - nasm
       - curl
+      - libcapstone3
 
 - name: See if we should install asciidoc
   stat: path=/vagrant/build_asciidoc
