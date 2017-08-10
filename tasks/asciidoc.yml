@@ -1,11 +1,12 @@
 ---
 - name: Install asciidoc
   become: true
-  apt: name=asciidoc
-
-- name: Install Inkscape
-  become: true
-  apt: name=inkscape
+  apt:
+      name: "{{item}}"
+  with_items:
+      - asciidoc
+      - inkscape
+      - source-highlight
 
 - name: Get slidy2
   get_url: url=https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/asciidoc-slidy2-backend-plugin/slidy2-v1.0.3.zip
