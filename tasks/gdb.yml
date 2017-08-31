@@ -5,6 +5,7 @@
   with_items:
       - gdb
       - python3-pip
+      - libcapstone3
 
 - name: Install python packages
   become: true
