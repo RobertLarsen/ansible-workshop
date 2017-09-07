@@ -51,6 +51,8 @@
           - "31337:31337"
       image: robertlarsen/fmtstr:latest
       env:
+          USER: fmtstr
+          PORT: 31337
           FLAG1: "FLAG{Okay! So you can leak from the stack}"
           FLAG2: "FLAG{GOOD! You can even follow pointers}"
           FLAG3: "FLAG{WAUW! You even defeated my ASLR}"
