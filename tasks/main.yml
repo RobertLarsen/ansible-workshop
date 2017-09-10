@@ -42,6 +42,22 @@
       image: robertlarsen/prosaworkshop:latest
   with_items: "{{services}}"
 
+- name: Start fmtstr challenge from Bornhack CTF 2017
+  become: true
+  docker_container:
+      name: fmtstr
+      volumes:
+          - /vagrant/presentations/04-advanced-exploitation/assignments/flag4
+      ports:
+          - "31337:31337"
+      image: robertlarsen/fmtstr:latest
+      env:
+          USER: fmtstr
+          PORT: 31337
+          FLAG1: "FLAG{Okay! So you can leak from the stack}"
+          FLAG2: "FLAG{GOOD! You can even follow pointers}"
+          FLAG3: "FLAG{WAUW! You even defeated my ASLR}"
+
 - name: Fetch binaries
   become: true
   shell: "docker cp integer_conversion:/{{item.project}}/{{item.binary}} /vagrant/presentations/{{item.project}}/assignments/{{item.binary}}"
