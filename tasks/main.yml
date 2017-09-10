@@ -46,6 +46,7 @@
   become: true
   docker_container:
       name: fmtstr
+      restart_policy: always
       volumes:
           - /vagrant/presentations/04-advanced-exploitation/assignments/flag4
       ports:
