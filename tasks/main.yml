@@ -34,6 +34,7 @@
   docker_container:
       name: "{{item.name}}"
       command: "{{item.path}} --port {{item.port}}"
+      restart_policy: always
       volumes:
           - "{{item.flag}}:/flag"
       ports:
