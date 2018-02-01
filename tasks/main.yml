@@ -21,7 +21,7 @@
 
 - name: Install asciidoc
   when: build_asciidoc.stat.isreg is defined and build_asciidoc.stat.isreg
-  include: asciidoc.yml
+  include_tasks: asciidoc.yml
 
 - name: Create flag files
   shell: "echo $(head -c 20 /dev/urandom | md5sum | head -c 32) >{{item}}"
@@ -73,10 +73,10 @@
       path: /etc/security/limits.conf
 
 - name: Bashrc
-  include: bashrc.yml
+  import_tasks: bashrc.yml
 
 - name: RunShellcode
-  include: runshellcode.yml
+  import_tasks: runshellcode.yml
 
 - name: Install gdb
-  include: gdb.yml
+  import_tasks: gdb.yml
