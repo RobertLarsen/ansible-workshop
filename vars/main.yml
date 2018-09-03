@@ -44,4 +44,3 @@ service_executables:
     - { project: 03-shellcoding,           binary: treebuilder }
     - { project: 04-advanced-exploitation, binary: fmt }
     - { project: 04-advanced-exploitation, binary: fmt_nx }
-
