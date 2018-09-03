@@ -8,7 +8,12 @@ galaxy_info:
       - name: Ubuntu
         versions:
             - xenial
-  galaxy_tags: []
+  galaxy_tags:
+      - exploitation
+      - hacking
+      - shellcoding
+      - reversing
+      - workshop
 dependencies:
     - RobertLarsen.docker
     - RobertLarsen.vim
