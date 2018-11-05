@@ -2,8 +2,7 @@
 - name: Install asciidoc
   become: true
   apt:
-      name: "{{item}}"
-  with_items:
+      name:
       - asciidoc
       - inkscape
       - source-highlight

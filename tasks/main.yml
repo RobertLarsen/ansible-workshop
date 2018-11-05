@@ -5,8 +5,8 @@
 
 - name: Install binutils and dev tools
   become: true
-  apt: "name={{item}}"
-  with_items:
+  apt:
+      name:
       - binutils-mips-linux-gnu
       - binutils-arm-linux-gnueabi
       - libc6-dev-i386
