@@ -12,6 +12,7 @@
       - libc6-dev-i386
       - execstack
       - nasm
+      - tor
       - curl
       - libcapstone3
 
