@@ -6,7 +6,7 @@
 
 - name: Compile 32 bit run_shellcode
   become: true
-  shell: gcc -m32 -o /usr/bin/run_shellcode32 run_shellcode.c
+  shell: gcc -m32 -o /usr/bin/run_shellcode32 src/runshellcode.c
   args:
       chdir: "{{ansible_user_dir}}/.repositories/RunShellcode"
       creates: /usr/bin/run_shellcode32
@@ -14,7 +14,7 @@
 
 - name: Compile 64 bit run_shellcode
   become: true
-  shell: gcc -o /usr/bin/run_shellcode64 run_shellcode.c
+  shell: gcc -o /usr/bin/run_shellcode64 src/runshellcode.c
   args:
       chdir: "{{ansible_user_dir}}/.repositories/RunShellcode"
       creates: /usr/bin/run_shellcode64
