@@ -1,7 +1,9 @@
 ---
 - name: Install pwntools
   become: true
-  pip: name=pwntools
+  pip:
+      name: pwntools
+      executable: pip3
 
 - name: Install binutils and dev tools
   become: true
