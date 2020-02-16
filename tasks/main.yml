@@ -1,10 +1,4 @@
 ---
-- name: Install pwntools
-  become: true
-  pip:
-      name: pwntools
-      executable: pip3
-
 - name: Install binutils and dev tools
   become: true
   apt:
@@ -83,3 +77,20 @@
 
 - name: Install gdb
   import_tasks: gdb.yml
+
+- name: Get pwntools
+  git:
+      repo: https://github.com/RobertLarsen/pwntools.git
+      dest: "{{ local_repositories_dir }}/pwntools"
+
+- name: Install dateutil needed for pwntools
+  become: true
+  pip:
+      name: python-dateutil
+      executable: pip3
+
+- name: Install pwntools
+  become: true
+  command:
+      chdir: "{{ local_repositories_dir }}/pwntools"
+      cmd: python3 ./setup.py install
