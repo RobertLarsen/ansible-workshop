@@ -92,5 +92,6 @@
 - name: Install pwntools
   become: true
   command:
+      creates: /usr/local/lib/python3.5/dist-packages/pwntools-4.2.0.dev0-py3.5.egg
       chdir: "{{ local_repositories_dir }}/pwntools"
       cmd: python3 ./setup.py install
