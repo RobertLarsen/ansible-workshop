@@ -21,7 +21,7 @@
   include_tasks: asciidoc.yml
 
 - name: Create flag files
-  shell: "echo $(head -c 20 /dev/urandom | md5sum | head -c 32) >{{item}}"
+  shell: "echo 'CTF{You_Successfully_Solved_'$(basename {{item}}|sed 's/.flag//')'}' >{{item}}"
   args:
       creates: "{{item}}"
   with_items: "{{flag_files}}"
