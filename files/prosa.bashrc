@@ -22,12 +22,12 @@ function pwn(){
         touch "${fname}"
         chmod +x "${fname}"
         cat > "${fname}"<<EOF
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from pwn import *
 
-context(arch = "i386", os = "linux")
+context(arch="i386", os="linux")
 
 SHELLCODE = asm(shellcraft.findpeersh())
 EOF
